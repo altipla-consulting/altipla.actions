@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eu
 
@@ -6,8 +6,6 @@ cd $GITHUB_WORKSPACE
 go install -v $BINARY_FOLDER
 
 EVENT_DATA=$(cat $GITHUB_EVENT_PATH)
-echo $EVENT_DATA
-echo $EVENT_DATA | jq .
 UPLOAD_URL=$(echo $EVENT_DATA | jq -r .release.upload_url)
 UPLOAD_URL=${UPLOAD_URL/\{?name,label\}/}
 RELEASE_NAME=$(echo $EVENT_DATA | jq -r .release.tag_name)
