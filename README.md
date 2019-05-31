@@ -13,7 +13,7 @@ Automate publishing Go build artifacts for GitHub releases.
 action "Publish" {
   uses = "altipla-consulting/altipla.actions/go-release@master"
   env = {
-    BINARY_NAME = "foo"
+    BINARY_FOLDER = "./cmd/foo"
   }
   secrets = ["GITHUB_TOKEN"]
 }
