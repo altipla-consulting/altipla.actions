@@ -10,8 +10,11 @@ Altipla Consulting repo of GitHub Actions.
 Automate publishing Go build artifacts for GitHub releases.
 
 ```
-action "example" {
-  uses = "altipla-consulting/altipla.actions@latest/go-release"
+action "Publish" {
+  uses = "altipla-consulting/altipla.actions/go-release@master"
+  env = {
+    BINARY_NAME = "foo"
+  }
   secrets = ["GITHUB_TOKEN"]
 }
 ```
