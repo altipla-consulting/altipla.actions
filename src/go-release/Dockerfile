@@ -12,4 +12,6 @@ RUN apt-get update && \
 
 COPY run.sh /run.sh
 
+ENV GOBIN /go/bin
+
 ENTRYPOINT ["/run.sh"]
