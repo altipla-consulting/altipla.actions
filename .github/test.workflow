@@ -5,7 +5,7 @@ workflow "release" {
 }
 
 action "go-release" {
-  uses = "./src/go-release"
+  uses = "./go-release"
   env = {
     BINARY_FOLDER = "./testdata/cmd/actions-test"
   }
