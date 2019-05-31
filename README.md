@@ -3,6 +3,8 @@
 
 Altipla Consulting repo of GitHub Actions.
 
+- [go-release](#go-release)
+
 ## go-release
 
 Automate publishing Go build artifacts for GitHub releases.
