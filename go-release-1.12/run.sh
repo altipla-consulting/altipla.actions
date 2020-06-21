@@ -19,4 +19,4 @@ RELEASE_NAME=$(echo $EVENT_DATA | jq -r .release.tag_name)
 PROJECT_NAME=$(basename $GITHUB_REPOSITORY)
 NAME="${PROJECT_NAME}_${RELEASE_NAME}_linux_amd64"
 
-curl -X POST --data-binary @/go/bin/$BIN_NAME -H 'Content-Type: application/gzip' -H "Authorization: Bearer ${GITHUB_TOKEN}" "${UPLOAD_URL}?name=${NAME}"
+curl -f -X POST --data-binary @/go/bin/$BIN_NAME -H 'Content-Type: application/gzip' -H "Authorization: Bearer ${GITHUB_TOKEN}" "${UPLOAD_URL}?name=${NAME}"
