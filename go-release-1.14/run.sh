@@ -2,10 +2,11 @@
 
 set -eu
 
-CMD=${COMMAND:-$(pwd)}
+COMMAND=${COMMAND:-$(pwd)}
+NAME=${NAME:-$(basename $COMMAND)}
 
 cd $GITHUB_WORKSPACE
-go install -v $CMD
+go install -v $COMMAND
 
 EVENT_DATA=$(cat $GITHUB_EVENT_PATH)
 UPLOAD_URL=$(echo $EVENT_DATA | jq -r .release.upload_url)
@@ -14,9 +15,4 @@ RELEASE_NAME=$(echo $EVENT_DATA | jq -r .release.tag_name)
 PROJECT_NAME=$(basename $GITHUB_REPOSITORY)
 NAME="${PROJECT_NAME}_${RELEASE_NAME}_linux_amd64"
 
-curl \
-  -X POST \
-  --data-binary @/go/bin/$(basename $CMD) \
-  -H 'Content-Type: application/gzip' \
-  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-  "${UPLOAD_URL}?name=${NAME}"
+curl -X POST --data-binary @/go/bin/$NAME -H 'Content-Type: application/gzip' -H "Authorization: Bearer ${GITHUB_TOKEN}" "${UPLOAD_URL}?name=${NAME}"
