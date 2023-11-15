@@ -71,3 +71,26 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         COMMAND: .
 ```
+
+
+## go-release-1.21
+
+Automate publishing Go build artifacts for GitHub releases.
+
+```yaml
+on: 
+  release:
+    types: [created]
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: altipla-consulting/altipla.actions/go-release-1.21@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COMMAND: .
+```
